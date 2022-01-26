@@ -1,5 +1,0 @@
-lxml==4.6.5
-requests==2.27.1
-tqdm==4.62.3
-bilibili-api~=9.1.0
-aiohttp~=3.7.4.post0

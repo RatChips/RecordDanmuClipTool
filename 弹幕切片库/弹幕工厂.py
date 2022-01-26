@@ -6,7 +6,7 @@ from typing import List, Tuple
 
 from lxml.etree import XML
 
-from 切片姬 import 切片
+from .切片姬 import 切片
 
 
 class 弹幕工厂:

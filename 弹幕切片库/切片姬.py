@@ -6,8 +6,8 @@ from typing import List
 
 from tqdm import tqdm
 
-from 工具 import 把时间转换为秒, 把秒转换为时间
-from 常量 import ffmpeg路径, ffprobe路径, 工作目录, 工作目录文件夹
+from .工具 import 把时间转换为秒, 把秒转换为时间
+from .常量 import ffmpeg路径, ffprobe路径, 工作目录, 工作目录文件夹
 
 
 @dataclass
@@ -40,7 +40,7 @@ class 切片姬:
             for x in result.stdout.readlines()
         ]
         duration = re.match(
-            ".+?:\s([\d:\.]+),\s?.+", [i for i in alist if "Duration" in i][0]
+            r".+?:\s([\d:\.]+),\s?.+", [i for i in alist if "Duration" in i][0]
         ).group(1)
         self.视频长度 = 把时间转换为秒(duration)
 
@@ -63,9 +63,9 @@ class 切片姬:
                 "-acodec",
                 "copy",
                 "-ss",
-                把秒转换为时间(开始时间+4),  # 开始时间
+                把秒转换为时间(开始时间 + 4),  # 开始时间
                 "-to",
-                把秒转换为时间(结束时间+7),  # 结束时间
+                把秒转换为时间(结束时间 + 7),  # 结束时间
                 工作目录 / 工作目录文件夹.切片.value / 文件名,  # 输出文件路径
                 "-y",
             ]
