@@ -1,0 +1,4 @@
+lxml==4.6.5
+PyYAML==6.0
+requests==2.27.1
+tqdm==4.62.3
