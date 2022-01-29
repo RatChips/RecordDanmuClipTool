@@ -1,13 +1,12 @@
 from importlib import reload
 
-from 弹幕切片库.工具 import 清屏, 自动配置
+from 弹幕切片库.工具 import 自动配置
 
 自动配置()  # 设置working_dir，设置ffmpeg路径，新建文件夹
-清屏()
 
 from 弹幕切片库 import 常量
 
-reload(常量)  # 修改config.yaml内容后，重新加载常量的内容
+reload(常量) # 修改工作目录后，需要重新加载常量
 
 import tkinter as tk
 from pathlib import Path
@@ -77,4 +76,4 @@ def test():
 
 
 if __name__ == "__main__":
-    main()
+    test()

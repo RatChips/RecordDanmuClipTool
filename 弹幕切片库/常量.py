@@ -1,6 +1,5 @@
 from enum import Enum
 from pathlib import Path
-import yaml
 
 
 class 工作目录文件夹(Enum):
@@ -15,10 +14,9 @@ class 录播来源(Enum):
     直播录制 = "直播录制"
 
 
-配置文件路径 = Path(__file__).parent.parent / "config.yaml"
-config = yaml.load(open(配置文件路径, encoding="utf-8"), Loader=yaml.FullLoader)
+ffmpeg路径 = Path(__file__).parent.joinpath("ffmpeg.exe")
+ffprobe路径 = Path(__file__).parent.joinpath("ffprobe.exe")
 
-ffmpeg路径 = Path(config["ffmpeg路径"])
-ffprobe路径 = Path(config["ffprobe路径"])
+工作目录文件路径 = Path(__file__).parent.joinpath("working_dir.dat")
+工作目录 = Path(Path(__file__).parent.joinpath("working_dir.dat").read_bytes().decode().strip())
 
-工作目录 = Path(config["工作目录"])

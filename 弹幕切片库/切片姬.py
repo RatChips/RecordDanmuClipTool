@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List
 
+import prettytable
 from tqdm import tqdm
 
 from .工具 import 把时间转换为秒, 把秒转换为时间
@@ -16,7 +17,7 @@ class 切片:
     结束时间: int
     标题: str
 
-    def __iter__(self):
+    def __iter__(self):  # 用于解包
         return iter([self.开始时间, self.结束时间, self.标题])
 
     def __str__(self):
@@ -55,7 +56,7 @@ class 切片姬:
         for 开始时间, 结束时间, 标题 in tqdm(self.切片列表, desc="切片中..."):
             文件名 = f"{标题}.mp4"
             cmd = [
-                ffmpeg路径,
+                f'"{ffmpeg路径}"',
                 "-i",
                 self.视频路径,  # 输入视频
                 "-vcodec",
@@ -74,5 +75,8 @@ class 切片姬:
             )
 
     def 打印所有切片(self):
-        for 序号, 切片 in enumerate(self.切片列表, start=1):
-            print(f"{序号}. {str(切片)}")
+        table = prettytable.PrettyTable(["标题", "开始时间", "结束时间"])
+        table.align = "r"
+        for 切片 in self.切片列表:
+            table.add_row([切片.标题, 把秒转换为时间(切片.开始时间), 把秒转换为时间(切片.结束时间)])
+        print(table)
