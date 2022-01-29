@@ -56,7 +56,7 @@ class 切片姬:
         for 开始时间, 结束时间, 标题 in tqdm(self.切片列表, desc="切片中..."):
             文件名 = f"{标题}.mp4"
             cmd = [
-                f'"{ffmpeg路径}"',
+                ffmpeg路径,
                 "-i",
                 self.视频路径,  # 输入视频
                 "-vcodec",
@@ -70,8 +70,11 @@ class 切片姬:
                 工作目录 / 工作目录文件夹.切片.value / 文件名,  # 输出文件路径
                 "-y",
             ]
+            # print(" ".join(map(str, cmd)))
             subprocess.run(
-                cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+                cmd,
+                # shell=True,
+                stdout=subprocess.PIPE,stderr=subprocess.PIPE
             )
 
     def 打印所有切片(self):

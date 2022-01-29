@@ -13,7 +13,6 @@ class 录播来源(Enum):
     录播姬 = "录播姬"
     直播录制 = "直播录制"
 
-
 ffmpeg路径 = Path(__file__).parent.joinpath("ffmpeg.exe")
 ffprobe路径 = Path(__file__).parent.joinpath("ffprobe.exe")
 

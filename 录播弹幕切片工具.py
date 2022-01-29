@@ -6,7 +6,7 @@ from 弹幕切片库.工具 import 自动配置
 
 from 弹幕切片库 import 常量
 
-reload(常量) # 修改工作目录后，需要重新加载常量
+reload(常量)  # 修改工作目录后，需要重新加载常量
 
 import tkinter as tk
 from pathlib import Path
@@ -64,7 +64,11 @@ def main():
             print("输入错误，请重新输入")
 
 
-def test():
+def debug():
+    import os
+
+    if not os.environ.get("DEBUG") == "123456":
+        return
     bvid = "BV12b4y1H7ho"
     切片man = "378884133 3723075".split(" ")
     录播 = 录播数据加载器.从bilibili导入(bvid)
@@ -73,7 +77,8 @@ def test():
 
     切片机.打印所有切片()
     切片机.切()
-
+    exit()
 
 if __name__ == "__main__":
-    test()
+    debug()
+    main()
