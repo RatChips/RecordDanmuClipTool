@@ -11,7 +11,7 @@ reload(常量)  # 修改工作目录后，需要重新加载常量
 import tkinter as tk
 from pathlib import Path
 from tkinter import filedialog
-
+import re
 from 弹幕切片库.切片姬 import 切片姬
 from 弹幕切片库.弹幕工厂 import 弹幕工厂
 from 弹幕切片库.录播数据 import 录播数据加载器
@@ -56,21 +56,24 @@ def main():
         print(f"{idx}. {功能[idx - 1].__name__}")
 
     while True:
-        try:
-            选择 = int(input("请输入录播类型:"))
-            反射列表[选择]()
-            break
-        except (KeyError, ValueError):
+        user_input = input("请输入录播类型(数字):")
+        if not re.match(r"^\d+$", user_input):
             print("输入错误，请重新输入")
+            continue
+        
+        选择 = int(user_input)
+        if not 0 < 选择 <= len(功能):
+            print("输入错误，请重新输入")
+            continue
+            
+        反射列表[选择]()
+        break
 
 
 def debug():
-    import os
-
-    if not os.environ.get("DEBUG") == "123456":
-        return
-    bvid = "BV12b4y1H7ho"
-    切片man = "378884133 3723075".split(" ")
+    bvid = "BV1rb4y1E7hT"
+    # bvid = "BV12b4y1H7ho"
+    切片man = "378884133 3723075 19990666".split(" ")
     录播 = 录播数据加载器.从bilibili导入(bvid)
     切片列表 = 弹幕工厂(录播.弹幕路径, 切片man).导出切片列表()
     切片机 = 切片姬(录播.视频路径, 切片列表)
@@ -79,6 +82,7 @@ def debug():
     切片机.切()
     exit()
 
+
 if __name__ == "__main__":
-    debug()
+    # debug()
     main()
