@@ -1,4 +1,6 @@
+better_exceptions==0.3.3
 bilibili_api==9.1.0
+easygui==0.98.2
 lxml==4.6.5
 prettytable==3.0.0
 requests==2.27.1
